@@ -10,12 +10,12 @@ defmodule Rumbl.Application do
     children = [
       # Start the Ecto repository
       Rumbl.Repo,
-      # Start the PubSub system
       {Phoenix.PubSub, name: Rumbl.PubSub}
-      # Start a worker by calling: Rumbl.Worker.start_link(arg)
-      # {Rumbl.Worker, arg}
     ]
 
-    Supervisor.start_link(children, strategy: :one_for_one, name: Rumbl.Supervisor)
+    # See https://hexdocs.pm/elixir/Supervisor.html
+    # for other strategies and supported options
+    opts = [strategy: :one_for_one, name: Rumbl.Supervisor]
+    Supervisor.start_link(children, opts)
   end
 end
